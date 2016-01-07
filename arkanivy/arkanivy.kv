@@ -1,0 +1,28 @@
+#:kivy 1.0.9
+
+<ArkanivyBall>:
+    size: 25, 25
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<ArkanivyPaddle>:
+    size: 200, 25
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<ArkanivyGame>:
+    ball: arkanivy_ball
+    player: player_paddle
+
+    ArkanivyBall:
+        id: arkanivy_ball
+        center_x: self.parent.center_x
+
+    ArkanivyPaddle:
+        id: player_paddle
+        center_x: self.parent.center_x
+        center_y: self.parent.y + self.height + 10
