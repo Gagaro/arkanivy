@@ -1,5 +1,12 @@
 #:kivy 1.0.9
 
+<ArkanivyBrick>:
+    size: 50, 25
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 <ArkanivyBall>:
     size: 25, 25
     canvas:
@@ -17,6 +24,7 @@
 <ArkanivyGame>:
     ball: arkanivy_ball
     player: player_paddle
+    bricks: [brick1, brick2, brick3, brick4, brick5, brick6, brick7, brick8, brick9, brick10, brick11, brick12]
 
     ArkanivyBall:
         id: arkanivy_ball
@@ -26,3 +34,63 @@
         id: player_paddle
         center_x: self.parent.center_x
         center_y: self.parent.y + self.height + 10
+
+    ArkanivyBrick:
+        id: brick1
+        center_x: self.parent.center_x - 150
+        center_y: self.parent.top - 50
+
+    ArkanivyBrick:
+        id: brick2
+        center_x: self.parent.center_x - 100
+        center_y: self.parent.top - 50
+
+    ArkanivyBrick:
+        id: brick3
+        center_x: self.parent.center_x - 50
+        center_y: self.parent.top - 50
+
+    ArkanivyBrick:
+        id: brick4
+        center_x: self.parent.center_x
+        center_y: self.parent.top - 50
+
+    ArkanivyBrick:
+        id: brick5
+        center_x: self.parent.center_x + 50
+        center_y: self.parent.top - 50
+
+    ArkanivyBrick:
+        id: brick6
+        center_x: self.parent.center_x + 100
+        center_y: self.parent.top - 50
+
+    ArkanivyBrick:
+        id: brick7
+        center_x: self.parent.center_x + 150
+        center_y: self.parent.top - 50
+
+    ArkanivyBrick:
+        id: brick8
+        center_x: self.parent.center_x - 100
+        center_y: self.parent.top - 75
+
+    ArkanivyBrick:
+        id: brick9
+        center_x: self.parent.center_x - 50
+        center_y: self.parent.top - 75
+
+    ArkanivyBrick:
+        id: brick10
+        center_x: self.parent.center_x
+        center_y: self.parent.top - 75
+
+    ArkanivyBrick:
+        id: brick11
+        center_x: self.parent.center_x + 50
+        center_y: self.parent.top - 75
+
+    ArkanivyBrick:
+        id: brick12
+        center_x: self.parent.center_x + 100
+        center_y: self.parent.top - 75

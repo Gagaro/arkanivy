@@ -1,9 +1,21 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty,\
-    ObjectProperty
+    ObjectProperty, ListProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
+
+
+class ArkanivyBrick(Widget):
+    def bounce_ball(self, ball):
+        if self.collide_widget(ball):
+            vx, vy = ball.velocity
+            offset = (ball.center_y - self.center_y) / (self.height / 2)
+            bounced = Vector(vx, -1 * vy)
+            vel = bounced
+            ball.velocity = vel.x, vel.y + offset
+            return True
+        return False
 
 
 class ArkanivyPaddle(Widget):
@@ -28,6 +40,7 @@ class ArkanivyBall(Widget):
 class ArkanivyGame(Widget):
     ball = ObjectProperty(None)
     player = ObjectProperty(None)
+    bricks = ListProperty([])
 
     def serve_ball(self, vel=(1, 2)):
         self.ball.center_x = self.center_x
@@ -39,6 +52,12 @@ class ArkanivyGame(Widget):
 
         # bounce of paddles
         self.player.bounce_ball(self.ball)
+
+        # bounce of bricks
+        for brick in self.bricks:
+            if brick.bounce_ball(self.ball):
+                self.remove_widget(brick)
+                self.bricks.remove(brick)
 
         # bounce ball off size
         if self.ball.top > self.top:
