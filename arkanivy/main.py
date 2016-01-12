@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty,\
     ObjectProperty, ListProperty
@@ -16,6 +17,10 @@ class ArkanivyBrick(Widget):
             ball.velocity = vel.x, vel.y + offset
             return True
         return False
+
+    def on_parent(self, widget, parent):
+        if parent is not None:
+            parent.bricks.append(self)
 
 
 class ArkanivyPaddle(Widget):
@@ -77,6 +82,7 @@ class ArkanivyApp(App):
     def build(self):
         game = ArkanivyGame()
         game.serve_ball()
+        Builder.apply_file(game, 'level1.kv')
         Clock.schedule_interval(game.update, 1.0 / 60.0)
         return game
 
